@@ -1,3 +1,5 @@
+![ubadges logo](misc/ubadges.png)
+
 Text-only, CSS-based, people badges for websites
 ================================================
 
