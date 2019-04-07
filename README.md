@@ -17,6 +17,8 @@ The default implemention can generate 26+ million unique ubadges from
 names using the standard English alphabet. All from a single <5kb CSS
 files.
 
+![Examples](misc/examples.png)
+
 
 How does it work?
 =================
