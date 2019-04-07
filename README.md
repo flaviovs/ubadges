@@ -1,21 +1,23 @@
 ![ubadges logo](misc/ubadges.png)
 
-Text-only, CSS-based, people badges for websites
-================================================
+Text-only, CSS-based, name badges for websites
+==============================================
 
-The **ubadges** package provides CSS classes and a standard formula to
-generate unique badges (icons) from people names.
+**ubadges** provides CSS classes and a standard formula to generate
+unique badges (ubadges) from names (usually people's names).
 
-Instead of using picture or avatars as image files, ubadges are text
-only, meaning they are fast to generate and simple to use. One can use
-ubadges when users does not have an associated picture, or this
-feature is not available. You can use ubadges anywhere when you want
-to disninguish people visually by associating a unique badge to them,
-when all you have is people's name (and, perhaps, other unique data).
+Instead of using pictures or avatars as image files, ubadges are text
+only, meaning they are fast to generate and simple to use. Size
+adjustments can be done by pure CSS, so you our your users can zoom
+ubadges in/out with no loss of quality.
 
-The default implemention can generate 26+ million unique ubadges from
-names using the standard English alphabet. All from a single <5kb CSS
-files.
+You can use ubadges anywhere you need to distinguish people visually by
+associating a badge to them, when all you have is people's name (and,
+perhaps, other uniquely identifiable data).
+
+The default implementation can generate 26+ million unique ubadges
+from name initials that use the standard English alphabet. All from a
+single <5KB CSS file.
 
 ![Examples](misc/examples.png)
 
@@ -23,18 +25,19 @@ files.
 How does it work?
 =================
 
-ubadges are constructed by hashing the normalized person name and
-(optional) unique data. Individual values are extracted from the
-resulting hash to determine the value for 3 separate ubadge
-characteristcs (a.k.a *dimensions*).
+ubadges are constructed by hashing the normalized name and (optional)
+unique data. Individual values are extracted from the resulting hash
+to determine the value for 3 separate badge characteristics (a.k.a
+*dimensions*).
 
-Standard ubadge use 22 background colours, 81 border radius
-variations, and 22 border colours. Two-letters initials are displayed
-inside of the badge, so the number of unique standard ubadges is
+Standard ubadges use 22 background colours, 81 border radius
+variations, and 22 border colours as its default 3 dimensions,
+respectively. Two-letters initials are displayed inside of the badge,
+so the number of visually unique standard ubadges is
 
     22 × 81 × 22 × 26 × 26 = 26,501,904
 
-This number will grow larger if you use other non A-Z characteres
+This number will grow larger if you use other non A-Z characters
 (such as kanji or accented characters).
 
 
@@ -48,8 +51,10 @@ Add `ubadge.min.css` to your web application:
 Add ubadges to your HTML pages (see below).
 
 
-Adding ubadges to your page
-===========================
+Generating ubadges
+==================
+
+Follow the algorithm below to generate ubadges:
 
 1. Normalize the name:
 
@@ -60,7 +65,7 @@ Adding ubadges to your page
 	3. Replace multiple space between words with 1 space character
 
 	4. If you want to associate extra unique data to the ubadge,
-       append a NEWLINE (0x0A, "\n") character followed by the extra
+       append a new line character (0x0A, "\n") character followed by the extra
        data.
 
 3. Hash the resulting string using MD5
@@ -73,20 +78,21 @@ Adding ubadges to your page
 
    3. Third byte value of the hash modulo 22 is value 3
 
-4. Get display initials - no standard formula to derive the initials
-   from someone's full name is specified. If you already have separate
-   first and last name fields in your application, you can just use
-   the first and last letter of each field, respectively. If you only
-   store full names, a standard algorithm is to split the name into
-   words, and use the first and last ones. In any case, initials
-   **should** be in upper case inside the ubadge. If your application
-   does not store people's full names, but identify people using
-   single words (e.g usernames), or if your are processing a record
-   with only the first name, use the first letter in upper case, and
-   the second letter in lower case. Notice that display initials
-   contributes to make the ubadge unique, but they are **not** taken
-   into account during dimension value calculations, thus they do not
-   determine the CSS classes to be used.
+4. Get display initials - no standard formula to derive initials from
+   names is specified. If you already have separate first and last
+   name fields in your application, you can just use the first and
+   last letter of each field, respectively. If you only store full
+   names, a commonly used algorithm is to split the name into words,
+   and use the first and last ones. In any case, initials **should**
+   be in upper case inside the ubadge. If your application does not
+   store people's full names, but identify people using single words
+   (e.g usernames), or if your are processing a record with only the
+   first name, use the first letter in upper case, and the second
+   letter in lower case. If all you have is a single letter, use the
+   letter followed by a space character. Notice that display initials
+   contributes to make the ubadge visually unique, but they are
+   **not** taken into account during dimension value calculations,
+   thus they do not determine the CSS classes to be used.
 
 5. Use the initials and ubadge dimension classes in your HTML. Each
    class is named as `ub_D-V`, where `D` is the dimension, and `V` is
@@ -105,7 +111,7 @@ Example
 
 3. MD5("flávio veloso soares") = f891de369a9a38ccbf7546c119e6f335
 
-4. Get dimensions:
+4. Get the dimensions:
 
         1st byte is 0xf8 (decimal 248) mod 22 = 6  // Dimension 1
         2nd byte is 0x91 (decimal 145) mod 81 = 64 // Dimension 2
@@ -122,29 +128,29 @@ Skipping a dimension
 ====================
 
 You can skip a dimension if you do not want the effects it
-provides.For example, to make all ubadges round (but stil have
-distinguishable background color and borders), you can just skip the
-second (border) dimension:
+provides. For example, to make all ubadges round (but still have
+distinguishable background colours and borders), you can simply omit
+the CSS class for the second (border) dimension:
 
         <span class="ubadge ub_1-6 ub_3-14">FS</span>
 
-Just keep in mind that by skipping a dimension you are reducing the
-number of unique ubadges. If you skip the second dimension, for
+Just keep in mind that by skipping a dimension you will be reducing
+the number of unique ubadges. If you skip the second dimension, for
 example, the number of unique ubadges is 327,184.
 
 
 Customizing ubadges
 ===================
 
-Customization can be done by simply overriding CSS classes. See the
-examples below for the most common customizations:
+Customization can be done by simple overriding CSS classes. See the
+sections below for the most common customization.
 
 Badge size
 ----------
 
 **ubadges** uses relative sizing of inner ubadges elements, based on
 parent element font size. That means that you can control ubadge sizes
-by just overriding the `font-size` attribute in the `.ubadge` class:
+by just overriding the `font-size` attribute in the `.ub` class:
 
 ```css
 /* Change ubadge size to 75% of default root font size. */
@@ -161,7 +167,7 @@ attribute:
 
 ```css
 .ub {
-    font-family: Courier;
+	font-family: Courier;
 }
 ```
 
@@ -172,7 +178,7 @@ prevent ubadges from having different sizes:
 
 ```css
 .ub {
-    font-family: serif;
+	font-family: serif;
 	width: 2.7em;
 	text-align: center;
 }
@@ -183,11 +189,12 @@ squared ubadges, specify the height as well:
 
 ```css
 .ub {
-    font-family: serif;
+	font-family: serif;
 	width: 2.7em;
 	height: 2.7em;
 	padding: 0;
-	line-height: 1.7em;
+	line-height: 2.2em;
+	text-align: center;
 }
 ```
 
@@ -221,7 +228,7 @@ unique ubadges.
 **Important**: the number of colours in the `$colours` variable
 determine the size of dimensions 1 and 3 for ubadge calculation. In
 other words, if you change the number of colours you will need to use
-the same number in dimenstions 1 and 3 modulo calculations, instead of
+the same number in dimensions 1 and 3 modulo calculations, instead of
 *22*.
 
 
@@ -229,21 +236,23 @@ Border radius
 -------------
 
 The `$border-radiuses` variable control the variation of ubadge border
-radiuses. By default it contains 3 values -- "no radius", "some
-radius", and "rounded". These variations are combined to generate
-ubadge classes for dimension 2. You may want to change the values if
-you want to use different border radius.
+radiuses. By default it contains 3 values, which roughly map to
+"square border", "slightly rounded border", and "rounded
+border". These variations are combined to generate ubadge classes for
+dimension 2. You may want to change the values if you want to use
+different border radius.
 
-You can also *add* (or *remove*) radius variations (for example, 4
-radiuses, instead of the default 3). Just remember to adjust your
-modulo calculations for dimension 2 (i.e. instead of *81*, use
-*N<sup>4</sup>*, where *N* is the number of radiuses used.
+Notice that you can *add* (or *remove*) radius variations (for
+example, 4 radiuses, instead of the default 3). Just remember to
+adjust your modulo calculations for dimension 2 (i.e. instead of *81*,
+use *N<sup>4</sup>*, where *N* is the number of radius values used.
 
 
-Other SASS customizations
--------------------------
+Other SASS customization
+------------------------
 
-See `scss/_variables.scss` for a list of customizable values.
+See `scss/_variables.scss` for a list of variables that can be
+customized.
 
 
 Bugs? Questions? Suggestions?
