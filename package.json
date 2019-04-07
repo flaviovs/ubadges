@@ -1,0 +1,22 @@
+{
+  "name": "ubadges",
+  "version": "1.0.0",
+  "description": "Text-only, CSS-based, name badges for websites",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flaviovs/ubadges.git"
+  },
+  "keywords": [
+    "css",
+    "badges",
+    "icon",
+    "avatar"
+  ],
+  "author": "Flávio Veloso (https://github.com/flaviovs)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flaviovs/ubadges/issues"
+  },
+  "homepage": "https://github.com/flaviovs/ubadges#readme"
+}
+
