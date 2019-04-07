@@ -255,6 +255,15 @@ See `scss/_variables.scss` for a list of variables that can be
 customized.
 
 
+Implementations
+===============
+
+Adding ubadges to HTML pages manually can be tiresome and
+error-prone. Currently, a PHP implementation to facilitate the
+generation of ubadges is available at
+https://github.com/flaviovs/ubadges-php.
+
+
 Bugs? Questions? Suggestions?
 =============================
 
