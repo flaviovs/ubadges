@@ -1,0 +1,46 @@
+/*!
+ * ubadges - http://github.com/flaviovs/ubadges
+ * (c) 2018 Flavio Veloso Soares
+ * Licensed under MIT license (see URL above).
+ */
+@import 'functions';
+@import 'variables';
+
+.ub {
+    box-sizing: border-box;
+    font-family: monospace;
+    display: inline-block;
+    padding: $padding;
+    border-width: $border-width;
+    border-style: $border-style;
+}
+
+@each $colour in $colours {
+    $i: index($colours, $colour);
+    .ub_1-#{$i} {
+	background-color: $colour;
+	color: get-fg-colour($colour);
+    }
+}
+
+$i: 1;
+@each $r1 in $border-radiuses {
+    @each $r2 in $border-radiuses {
+	@each $r3 in $border-radiuses {
+	    @each $r4 in $border-radiuses {
+		.ub_2-#{$i} {
+		    border-radius: pack4($r1, $r2, $r3, $r4);
+		}
+		$i: $i + 1
+	    }
+	}
+    }
+}
+
+@each $colour in $colours {
+    $i: index($colours, $colour);
+    .ub_3-#{$i} {
+	border-color: $colour;
+    }
+}
+

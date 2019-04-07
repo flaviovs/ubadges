@@ -1,0 +1,13 @@
+{
+    "name": "flaviovs/inicons",
+    "description": "Inicons library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Flávio Veloso",
+            "email": "flaviovs@magnux.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}

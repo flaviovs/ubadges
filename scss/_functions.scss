@@ -1,0 +1,21 @@
+@function get-fg-colour($bg-colour) {
+    $threshold: 47;
+    $adjust: 60%;
+    @if (lightness($bg-colour) >= $threshold) {
+	@return darken($bg-colour, $adjust);
+    }
+    @return lighten($bg-colour, $adjust);
+}
+
+@function pack4($e1, $e2, $e3, $e4) {
+    @if ($e1 == $e2 and $e2 == $e3 and $e3 == $e4) {
+	@return $e1;
+    }
+    @if ($e1 == $e3 and $e2 == $e4) {
+	@return $e1 $e2;
+    }
+    @if ($e2 == $e4) {
+	@return $e1 $e2 $e3;
+    }
+    @return $e1 $e2 $e3 $e4;
+}
