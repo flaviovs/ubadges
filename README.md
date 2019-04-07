@@ -46,7 +46,7 @@ How to use
 
 Add `ubadge.min.css` to your web application:
 
-    <link href="ubadges.all.css" rel="stylesheet">
+    <link href="dist/ubadges.min.css" rel="stylesheet">
 
 Add ubadges to your HTML pages (see below).
 
