@@ -72,11 +72,11 @@ Follow the algorithm below to generate ubadges:
 
 4. Get dimension values:
 
-   1. First byte value of the hash modulo 22 is value 1
+   1. First byte value of the hash modulo 22 plus 1 is value 1
 
-   2. Second byte value of the hash modulo 81 is value 2
+   2. Second byte value of the hash modulo 81 plus 1 is value 2
 
-   3. Third byte value of the hash modulo 22 is value 3
+   3. Third byte value of the hash modulo 22 plus 1 is value 3
 
 4. Get display initials - no standard formula to derive initials from
    names is specified. If you already have separate first and last
@@ -113,15 +113,15 @@ Example
 
 4. Get the dimensions:
 
-        1st byte is 0xf8 (decimal 248) mod 22 = 6  // Dimension 1
-        2nd byte is 0x91 (decimal 145) mod 81 = 64 // Dimension 2
-        3rd byte is 0xde (decimal 222) mod 22 = 2  // Dimension 3
+        1st byte is 0xf8 (decimal 248) mod 22 + 1 = 7  // Dimension 1
+        2nd byte is 0x91 (decimal 145) mod 81 + 1 = 65 // Dimension 2
+        3rd byte is 0xde (decimal 222) mod 22 + 1 = 3  // Dimension 3
 
 5. Get the initials: "FS"
 
 6. Output the HTML:
 
-        <span class="ub ub_1-6 ub_2-64 ub_3-2">FS</span>
+        <span class="ub ub_1-7 ub_2-65 ub_3-3">FS</span>
 
 
 Skipping a dimension
